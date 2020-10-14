@@ -123,6 +123,14 @@
           }
         }
       }
-    }},
-  "defaultProject": "our-team"
+    }
+  },
+  "defaultProject": "our-team",
+  "schematics": {
+    "@schematics/angular": {
+      "component": {
+        "changeDetection": "OnPush"
+      }
+    }
+  }
 }
