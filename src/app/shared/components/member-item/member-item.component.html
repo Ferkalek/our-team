@@ -1,0 +1,7 @@
+<ng-container *ngIf="member">
+  <ot-image-viewer [imgData]="member.imageUrl"></ot-image-viewer>
+  <h3>{{member.block.title}}</h3>
+  <p>{{member.block.description}}</p>
+  <a [href]="'mailto:'+member.block.link">{{member.block.link}}</a>
+  <p>{{member.block.text}}</p>
+</ng-container>

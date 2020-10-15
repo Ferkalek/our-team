@@ -1,3 +1,10 @@
-<p>home-page works!</p>
-
-<ot-our-team-section></ot-our-team-section>
+<ng-container *ngIf="(data$ | async) as blocks">
+  <ng-container *ngFor="let block of blocks">
+    <section *ngIf="block.type==='blocks'">
+      <h2>{{block.attributes.title}}</h2>
+      <ng-container *ngIf="block.attributes.title==='Our Team'">
+        <ot-members-section [members]="objectToArr(block.attributes.memberCards)"></ot-members-section>
+      </ng-container>
+    </section>
+  </ng-container>
+</ng-container>

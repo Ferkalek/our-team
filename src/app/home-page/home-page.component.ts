@@ -1,4 +1,10 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
+import {
+  IMemberCards,
+  IResponceDTO,
+} from "../shared/interfacies/responce-data.interface";
+import { MainService } from "../shared/services/main.service";
 
 @Component({
   selector: "ot-home-page",
@@ -7,7 +13,18 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePageComponent implements OnInit {
-  constructor() {}
+  public data$: BehaviorSubject<IResponceDTO[]> = new BehaviorSubject<
+    IResponceDTO[]
+  >([]);
+  constructor(private mainService: MainService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mainService
+      .getData()
+      .subscribe((data: IResponceDTO[]) => this.data$.next(data));
+  }
+
+  public objectToArr(obj: Object): Array<IMemberCards> {
+    return Object.values(obj);
+  }
 }
